@@ -1,0 +1,137 @@
+.book-item {
+  transition: all 0.3s ease;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin-bottom: 0.5rem;
+}
+
+.book-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: #0d6efd;
+}
+
+.book-thumbnail {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.book-cover {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.book-details {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-details:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-button .btn-link {
+  padding: 0.25rem;
+  color: #0d6efd;
+  transition: all 0.3s ease;
+}
+
+.action-button .btn-link:hover {
+  transform: scale(1.2);
+  color: #0a58ca;
+}
+
+.bi-arrow-right-circle-fill {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+  .book-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .action-button {
+    align-self: flex-end;
+    margin-top: 1rem;
+  }
+}
+
+
+.book-item {
+  transition: all 0.3s ease;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  margin-bottom: 0.5rem;
+}
+
+.book-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: #0d6efd;
+}
+
+.book-thumbnail {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.book-cover {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.book-details {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-details:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-button .btn-link {
+  padding: 0.25rem;
+  color: #0d6efd;
+  transition: all 0.3s ease;
+}
+
+.action-button .btn-link:hover {
+  transform: scale(1.2);
+  color: #0a58ca;
+}
+
+.bi-arrow-right-circle-fill {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.badge {
+  font-size: 0.8rem;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.form-select:focus,
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+

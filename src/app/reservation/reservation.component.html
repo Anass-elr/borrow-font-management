@@ -1,0 +1,70 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Réserver un livre</h2>
+          <div class="d-flex mb-4">
+            <img [src]="" [alt]="selectedBook.libLivre" class="book-cover me-3">
+            <div>
+              <h3 class="h5">{{ selectedBook.libLivre }}</h3>
+              <p class="text-muted">{{ selectedBook.auteur }}</p>
+              <p>selectedBook.description </p>
+            </div>
+          </div>
+          <div class="alert alert-info mb-4">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            Date de disponibilité estimée : {{ availableDate.retourLivre |date:'dd/MM/yyyy' }}
+         </div>
+          <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="days" class="form-label">Nombre de jours</label>
+              <input type="number" class="form-control" id="days" formControlName="days" required min="1" max="30">
+              <div *ngIf="reservationForm.get('days')?.invalid && (reservationForm.get('days')?.dirty || reservationForm.get('days')?.touched)" class="text-danger">
+                <small *ngIf="reservationForm.get('days')?.errors?.['required']">Le nombre de jours est requis.</small>
+                <small *ngIf="reservationForm.get('days')?.errors?.['min']">Le nombre de jours minimum est 1.</small>
+                <small *ngIf="reservationForm.get('days')?.errors?.['max']">Le nombre de jours maximum est 30.</small>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="!reservationForm.valid">
+              <i class="bi bi-calendar-check me-2"></i>Réserver
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmation -->
+<div class="modal" [class.show]="showConfirmModal" [style.display]="showConfirmModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmer la réservation</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>Voulez-vous confirmer la réservation de "{{ selectedBook.libLivre }}" pour {{ reservationForm.get('days')?.value }} jours ?</p>
+        <p>Date de disponibilité : {{ availableDate.retourLivre | date:'dd/MM/yyyy' }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+        <button type="button" class="btn btn-primary" (click)="confirmReservation()">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay de chargement -->
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Chargement...</span>
+  </div>
+</div>
+
+<!-- Message de succès -->
+<div *ngIf="reservationSuccess" class="alert alert-success mt-3" role="alert">
+  <i class="bi bi-check-circle-fill me-2"></i>
+  Votre réservation a été effectuée avec succès !
+</div>

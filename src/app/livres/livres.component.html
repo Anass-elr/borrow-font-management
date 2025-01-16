@@ -1,0 +1,73 @@
+<div class="container my-5">
+  <h2 class="mb-4 text-center">Liste des Livres</h2>
+
+
+  <div class="row justify-content-center mb-4">
+
+
+    <div class="col-lg-8 col-xl-7">
+      <form (ngSubmit)="onSearch()" class="mb-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Rechercher un livre" [(ngModel)]="searchTerm" name="search">
+          <button class="btn btn-outline-primary" type="submit">Rechercher</button>
+        </div>
+      </form>
+
+      <div class="d-flex justify-content-between mb-3">
+        <select class="form-select me-2" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+          <option value="">Toutes les catégories</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{category.libCategorie}}</option>
+        </select>
+        <select class="form-select me-2" [(ngModel)]="selectedAvailability" (change)="onAvailabilityChange()">
+          <option value="">Toute disponibilité</option>
+          <option value="true">En stock</option>
+          <option value="false">Indisponible</option>
+        </select>
+        <select class="form-select" [(ngModel)]="selectedAuthor" (change)="onAuthorChange()">
+          <option value="">Tous les auteurs</option>
+         <!-- <option *ngFor="let author of authors" [value]="author">{{author}}</option>  -->
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+      <ul class="list-group">
+        <li *ngFor="let book of books" class="list-group-item d-flex justify-content-between align-items-center book-item">
+          <div class="d-flex align-items-center">
+            <img [src]="imagePath" [alt]="book.libLivre" class="me-3 book-thumbnail">
+            <div>
+              <h5 class="mb-0">{{book.libLivre}}</h5>
+              <small class="text-muted">{{book.auteur}}</small>
+            </div>
+          </div>
+          <div class="action-button">
+            <button class="btn btn-link text-primary" (click)="viewDetails(book)" title="Voir les détails">
+              <i class="bi bi-arrow-right-circle-fill fs-4"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-8 col-xl-7">
+      <div *ngIf="selectedBook" class="card book-details">
+        <div class="card-body">
+          <div class="d-flex">
+            <img [src]="imagePath" [alt]="selectedBook.libLivre" class="me-3 book-cover">
+            <div>
+              <h5 class="card-title">{{selectedBook.libLivre}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">par {{selectedBook.auteur}}</h6>
+              <p class="card-text">{{selectedBook.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

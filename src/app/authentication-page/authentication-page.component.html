@@ -1,0 +1,33 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-xl-5">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Connexion</h2>
+          <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="username" class="form-label">Nom d'utilisateur</label>
+              <input type="text" class="form-control" id="username" formControlName="username" required>
+              <div *ngIf="authForm.get('username')?.invalid && (authForm.get('username')?.dirty || authForm.get('username')?.touched)" class="text-danger">
+                <small *ngIf="authForm.get('username')?.errors?.['required']">Le nom d'utilisateur est requis.</small>
+                <small *ngIf="authForm.get('username')?.errors?.['minlength']">Le nom d'utilisateur doit contenir au moins 3 caractères.</small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" id="password" formControlName="password" required>
+              <div *ngIf="authForm.get('password')?.invalid && (authForm.get('password')?.dirty || authForm.get('password')?.touched)" class="text-danger">
+                <small *ngIf="authForm.get('password')?.errors?.['required']">Le mot de passe est requis.</small>
+                <small *ngIf="authForm.get('password')?.errors?.['minlength']">Le mot de passe doit contenir au moins 6 caractères.</small>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="!authForm.valid">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

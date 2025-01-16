@@ -1,0 +1,45 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Mes Réservations</h2>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="table-light">
+      <tr>
+        <th>Livre</th>
+        <th>titre</th>
+
+        <th>Date de Réservation</th>
+        <th>Date de Disponibilité</th>
+        <th>Durée (jours)</th>
+        <th>Statut</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <td>
+          <div class="d-flex align-items-center">
+            <img [src]="reservation.livre.imagePath" [alt]="reservation.livre.libLivre" class="book-cover me-3">
+            <div>
+              <h6 class="mb-0">{{ reservation.libLivre }}</h6>
+              <small class="text-muted">{{ reservation.auteur }}</small>
+            </div>
+          </div>
+        </td>
+        <td>{{ reservation.livre.libLivre  }}</td>
+
+        <td>{{ reservation.dateReservation | date:'dd/MM/yyyy' }}</td>
+        <td>{{ reservation.dateDisponibilitePossible | date:'dd/MM/yyyy' }}</td>
+        <td>{{ reservation.dureeJours }}</td>
+        <td>
+            <span class="badge" [ngClass]="{'bg-success': reservation.valid, 'bg-warning': !reservation.valid}">
+              {{ reservation.valid ? 'Validée' : 'En attente' }}
+            </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="reservations.length === 0" class="alert alert-info text-center">
+    Vous n'avez pas de réservations en cours.
+  </div>
+</div>
+

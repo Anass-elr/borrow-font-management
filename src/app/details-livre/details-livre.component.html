@@ -1,0 +1,36 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+      <div class="card book-details">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 mb-3 mb-md-0">
+              <img [src]="imagePath" [alt]="book.libLivre" class="img-fluid rounded book-cover">
+            </div>
+            <div class="col-md-8">
+              <h2 class="card-title">{{book.libLivre}}</h2>
+              <h6 class="card-subtitle mb-2 text-muted">par {{book.auteur}}</h6>
+              <p class="card-text">book.descriptionbook.descriptionbook.descriptionbook.descriptionbook.descriptionbook.descriptionbook.description
+                book.descriptionbook.descriptionbook.descriptionbook.descriptionbook.descriptionbook.descriptionbook.description
+                book.descriptionbook.descriptionbook.descriptionbook.descriptionbook.descriptionbook.descriptionbook.description</p>
+              <p class="card-text"><strong>Stock:</strong> {{book.nbEnStoque}}</p>
+              <div class="mb-3">
+                <strong>Catégories:</strong>
+                <span *ngFor="let category of book.categoryIds" class="badge bg-secondary me-1">{{category}}</span>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button *ngIf="book.nbEnStoque > 0" class="btn btn-primary" (click)="borrowBook()">
+                  <i class="bi bi-book me-2"></i>Emprunter
+                </button>
+                <button *ngIf="book.nbEnStoque === 0" class="btn btn-secondary" (click)="reserveBook()">
+                  <i class="bi bi-bookmark-plus me-2"></i>Réserver
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

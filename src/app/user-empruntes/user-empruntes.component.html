@@ -1,0 +1,34 @@
+<div class="container my-5">
+  <h2 class="mb-4 text-center">Mes livres empruntés</h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+      <div class="list-group">
+        <div *ngFor="let book of borrowedBooks" class="list-group-item list-group-item-action flex-column align-items-start mb-3">
+          <div class="d-flex w-100 justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+              <img [src]="imagePath" [alt]="book.livre.libLivre" class="book-cover me-3">
+              <div>
+                <h5 class="mb-1">{{ book.livre.libLivre }}</h5>
+                <p class="mb-1">{{ book.livre.auteur }}</p>
+                <small>Emprunté le: {{ book.dateEmprunte | date:'dd/MM/yyyy' }}</small><br>
+                <small [class.text-danger]="isOverdue(book.retourLivre)">
+                  À retourner le: {{ book.retourLivre | date:'dd/MM/yyyy' }}
+                </small><br>
+                <small>Coût: {{ book.coutEmprunt }} €</small><br>
+
+                <small [class.text-warning]="!isOverdue(book.retourLivre)" [class.text-danger]="isOverdue(book.retourLivre)">
+                  Temps restant: {{ getCountdown(book.retourLivre) }}
+                </small>
+              </div>
+            </div>
+            <span [class.badge-success]="!isOverdue(book.retourLivre)"
+                  [class.badge-danger]="isOverdue(book.retourLivre)"
+                  class="badge rounded-pill">
+              {{ isOverdue(book.retourLivre) ? 'En retard' : 'À temps' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
